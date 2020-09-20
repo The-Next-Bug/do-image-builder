@@ -1,0 +1,3 @@
+[submodule "old-blog"]
+	path = old-blog
+	url = git@github.com:The-Next-Bug/old-blog.git

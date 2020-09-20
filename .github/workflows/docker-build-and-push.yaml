@@ -1,0 +1,15 @@
+name: Docker Image build and Push to DO Registry
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  checkout:
+    - uses: actions/checkout@v2
+      with:
+        submodules: 'recursive'
+        ssh-key: ${{ secrets.DEPLOY_KEY }}
+
+    - run: ls -al old-blog
