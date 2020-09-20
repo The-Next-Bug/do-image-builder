@@ -7,11 +7,13 @@ on:
 
 jobs:
   checkout:
-    - uses: actions/checkout@v2
-      with:
-        submodules: 'recursive'
-        ssh-key: ${{ secrets.DEPLOY_KEY }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: 'recursive'
+          ssh-key: ${{ secrets.DEPLOY_KEY }}
 
-    - run: ls -al old-blog
-    - run: ./old-blog/build.sh
+      - run: ls -al old-blog
+      - run: ./old-blog/build.sh
 
