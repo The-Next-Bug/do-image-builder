@@ -10,7 +10,7 @@ $(SUBDIRS):
 ci-update:
 	git submodule update --remote --rebase
 	git add .
-	git commit -m "Updating submodules : $(GITHUB_WORKFLOW), $(GITHUB_RUN_ID)"
+	git commit -m "Updating submodules..."
 	git push
 
 .PHONY: $(SUBDIRS) ci update
