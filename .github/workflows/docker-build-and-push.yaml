@@ -6,14 +6,28 @@ on:
       - master
 
 jobs:
-  checkout:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+
+      # Prep things for doing doctl stuff
+      - name: Install doctl
+        uses: digitalocean/action-doctl@v2
+        with:
+            token: ${{ secrets.DO_TOKEN }}
+
+      - name: Login to registry
+        run: doctl registry login
+
+      - name: Pull code
+        uses: actions/checkout@v2
         with:
           submodules: 'recursive'
           ssh-key: ${{ secrets.DEPLOY_KEY }}
 
-      - run: ls -al old-blog
-      - run: ./old-blog/build.sh
+      - name: Check old blog checkout
+        run: ls -al old-blog
+
+      - name: Build and push old-blog image
+        run: ./old-blog/build.sh
 
