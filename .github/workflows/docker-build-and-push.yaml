@@ -13,3 +13,5 @@ jobs:
         ssh-key: ${{ secrets.DEPLOY_KEY }}
 
     - run: ls -al old-blog
+    - run: ./old-blog/build.sh
+
