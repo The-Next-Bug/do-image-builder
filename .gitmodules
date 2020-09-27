@@ -7,3 +7,6 @@
 [submodule "the-next-bug"]
 	path = the-next-bug
 	url = git@github.com:The-Next-Bug/blog.git
+[submodule "chrissalch-com"]
+	path = chrissalch-com
+	url = git@github.com:arlaneenalra/blog.git
