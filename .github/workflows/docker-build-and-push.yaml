@@ -16,8 +16,9 @@ jobs:
         with:
             token: ${{ secrets.DO_TOKEN }}
 
+      # Do not create permanent tokens 
       - name: Login to registry
-        run: doctl registry login
+        run: doctl registry login --expiry-seconds 600 
 
       - name: Pull code
         uses: actions/checkout@v2
