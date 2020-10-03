@@ -1,0 +1,15 @@
+
+domains:
+  - name: "chrissalch.com"
+    image: "registry.digitalocean.com/shelf/chrissalch-com"
+
+  - name: "segmentnine.com"
+  - name: "seg9.com"
+  - name: "thenextbug.com"
+  - name: "shinybitsnpieces.com"
+  - name: "shinybitsnpieces.net"
+  - name: "kc5vzm.com"
+  - name: "arlaneenalra.com"
+  - name: "simplegomoku.com"
+  - name: "severeeyetrauma.com"
+  - name: "erasableman.com"

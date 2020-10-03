@@ -1,0 +1,7 @@
+apiVersion: v2
+name: site-deploy
+description: An chart to deploy the blog sites, mostly meant to be used with argo.
+type: application
+
+version: 0.1.0
+appVersion: 1.16.0

@@ -1,4 +1,8 @@
-SUBDIRS := $(wildcard */.)
+
+# see: https://stackoverflow.com/a/6145814/876884
+FILTER_OUT = $(foreach v,$(2),$(if $(findstring $(1),$(v)),,$(v)))
+
+SUBDIRS := $(call FILTER_OUT, charts, $(wildcard */.))
 
 ci: $(SUBDIRS)
 
