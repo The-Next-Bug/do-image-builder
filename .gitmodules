@@ -1,6 +1,3 @@
-[submodule "old-blog"]
-	path = old-blog
-	url = git@github.com:The-Next-Bug/old-blog.git
 [submodule "nginx-redirector"]
 	path = nginx-redirector
 	url = git@github.com:The-Next-Bug/nginx-redirector.git
