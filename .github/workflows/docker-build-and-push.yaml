@@ -26,6 +26,10 @@ jobs:
           submodules: 'recursive'
             # The only private repo here was removed.
             #          ssh-key: ${{ secrets.DEPLOY_KEY }}
+            #
+            #
+      - name: Configure Git
+        run: git config --global user.name "BugBot" && git config --global user.email "no-reply@thenextbug.com"
 
       - name: Build and publish submodule projects
         run: make ci
