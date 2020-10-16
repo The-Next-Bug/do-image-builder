@@ -36,7 +36,6 @@ jobs:
           git config --global --name-only --get-regexp core\.sshCommand
           git config --global --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
           git config --global http.https://github.com/.extraheader "AUTHORIZATION: basic ${{ secrets.GITHUB_TOKEN }}"
-          git config --global url.https://github.com/.insteadOf git@github.com:
 
       - name: Build and publish submodule projects
         run: make ci
