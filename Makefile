@@ -11,7 +11,7 @@ NOW := $(shell date -u '+%Y-%m-%dT%H-%M-%Sz')
 ci: $(SUBDIRS) helm-commit
 
 $(CHARTS):
-	git clone --depth 1 https://$(GITHUB_ACTOR):$(GITHUB_TOKEN)@github.com/The-Next-Bug/helm-charts.git $(CHARTS)
+	git clone --depth 1 https://$(GITHUB_TOKEN)@github.com/The-Next-Bug/helm-charts.git $(CHARTS)
 
 helm-commit: $(SUBDIRS)
 	cd $(CHARTS) \
