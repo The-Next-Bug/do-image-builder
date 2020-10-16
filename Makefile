@@ -1,5 +1,5 @@
 
-CHARTS = $(CURDIR)/helm-charts
+CHARTS = helm-charts
 
 # see: https://stackoverflow.com/a/6145814/876884
 FILTER_OUT = $(foreach v,$(2),$(if $(findstring $(1),$(v)),,$(v)))
@@ -10,8 +10,8 @@ NOW := $(shell date -u '+%Y-%m-%dT%H-%M-%Sz')
 
 ci: $(SUBDIRS) helm-commit
 
-$(CHARTS): 
-	git clone --depth 1 https://github.com/The-Next-Bug/helm-charts.git $(CHARTS)
+$(CHARTS):
+	git clone --depth 1 https://$(GITHUB_ACTOR):$(GITHUB_TOKEN)@github.com/The-Next-Bug/helm-charts.git $(CHARTS)
 
 helm-commit: $(SUBDIRS)
 	cd $(CHARTS) \
@@ -22,7 +22,7 @@ helm-commit: $(SUBDIRS)
 # see: https://stackoverflow.com/a/17845120/876884
 $(SUBDIRS): $(CHARTS)
 	cd $(CHARTS) && git pull --ff-only
-	@$(MAKE) -w -C $@ NOW=$(NOW) TAG_PATH=$(CHARTS)/site-deploy $(MAKECMDGOALS)
+	@$(MAKE) -w -C $@ NOW=$(NOW) TAG_PATH=$(CURDIR)/$(CHARTS)/site-deploy $(MAKECMDGOALS)
  
 # Update all submodules
 ci-update:
