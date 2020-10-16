@@ -8,11 +8,16 @@ SUBDIRS := $(call FILTER_OUT, charts, $(wildcard images/*/.))
 
 NOW := $(shell date -u '+%Y-%m-%dT%H-%M-%Sz')
 
-ci: $(SUBDIRS)
+ci: $(SUBDIRS) helm-commit
 
 $(CHARTS): 
-	git clone --depth 1 https://github.com/The-Next-Bug/helm-charts.git $(CHARTS)
+	git clone --depth 1 --ff-only https://github.com/The-Next-Bug/helm-charts.git $(CHARTS)
 
+helm-commit: $(SUBDIRS)
+	cd $(CHARTS) \
+		&& git add . \
+		&& git commit -a -m 'CI: Updating site-deploy image tags' \
+		&& git push
 
 # see: https://stackoverflow.com/a/17845120/876884
 $(SUBDIRS): $(CHARTS)
@@ -26,4 +31,4 @@ ci-update:
 	git commit -m "Updating submodules..."
 	git push
 
-.PHONY: $(SUBDIRS) ci update
+.PHONY: $(SUBDIRS) ci update helm-commit
