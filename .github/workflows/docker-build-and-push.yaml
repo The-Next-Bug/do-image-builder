@@ -32,7 +32,12 @@ jobs:
         run: |
           git config --global user.name "the-next-bug"
           git config --global user.email "no-reply@thenextbug.com"
+
+          git config --global --name-only --get-regexp core\.sshCommand
+          git config --global --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
           git config --global http.https://github.com/.extraheader "AUTHORIZATION: basic ${{ secrets.GITHUB_TOKEN }}"
+          git config --global --unset-all url.https://github.com/.insteadOf
+          git config --global url.https://github.com/.insteadOf git@github.com:
 
       - name: Build and publish submodule projects
         run: make ci
