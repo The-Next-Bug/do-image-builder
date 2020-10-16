@@ -31,11 +31,11 @@ jobs:
       - name: Configure Git
         run: |
           echo "Hello"
-          git config --global user.name "the-next-bug"
-          git config --global user.email "no-reply@thenextbug.com"
-          git config --global --name-only --get-regexp core\.sshCommand
-          git config --global --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
-          git config --global http.https://github.com/.extraheader "AUTHORIZATION: basic ${{ secrets.GITHUB_TOKEN }}"
+          /usr/bin/git config --global user.name "the-next-bug"
+          /usr/bin/git config --global user.email "no-reply@thenextbug.com"
+          /usr/bin/git config --global --name-only --get-regexp core\.sshCommand
+          /usr/bin/git config --global --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+          /usr/bin/git config --global http.https://github.com/.extraheader "AUTHORIZATION: basic ${{ secrets.GITHUB_TOKEN }}"
 
       - name: Build and publish submodule projects
         run: make ci
