@@ -11,7 +11,7 @@ NOW := $(shell date -u '+%Y-%m-%dT%H-%M-%Sz')
 ci: $(SUBDIRS)
 
 $(CHARTS): 
-	git clone --depth 1 git@github.com:The-Next-Bug/helm-charts.git $(CHARTS)
+	git clone --depth 1 https://github.com/The-Next-Bug/helm-charts.git $(CHARTS)
 
 
 # see: https://stackoverflow.com/a/17845120/876884
