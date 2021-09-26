@@ -1,6 +1,3 @@
-[submodule "nginx-redirector"]
-	path = images/nginx-redirector
-	url = git@github.com:The-Next-Bug/nginx-redirector.git
 [submodule "the-next-bug"]
 	path = images/the-next-bug
 	url = git@github.com:The-Next-Bug/blog.git
