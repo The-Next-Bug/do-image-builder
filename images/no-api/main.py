@@ -3,6 +3,7 @@ import random
 from pathlib import Path
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import RedirectResponse
 from pydantic import BaseModel
 
 app = FastAPI(
@@ -22,6 +23,7 @@ NOS = json.loads(Path("no.json").read_text())
 
 
 class NoResponse(BaseModel):
+    index: int
     no: str
     reason: str
 
@@ -29,7 +31,8 @@ class NoResponse(BaseModel):
 @app.get("/no", response_model=NoResponse, summary="Random no")
 def get_random_no():
     """Return a randomly selected no with its reason."""
-    return random.choice(NOS)
+    index = random.randrange(len(NOS))
+    return {"index": index, **NOS[index]}
 
 
 @app.get("/no/{index}", response_model=NoResponse, summary="No by index")
@@ -37,4 +40,9 @@ def get_no_by_index(index: int):
     """Return a specific no entry by zero-based index (0 to count-1)."""
     if index < 0 or index >= len(NOS):
         raise HTTPException(status_code=404, detail=f"Index out of range (0\u2013{len(NOS) - 1})")
-    return NOS[index]
+    return {"index": index, **NOS[index]}
+
+
+@app.get("/{_path:path}", include_in_schema=False)
+def catch_all():
+    return RedirectResponse(url="/docs")
