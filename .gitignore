@@ -1,3 +1,4 @@
 helm-charts/
 deploy_key*
 .claude/
+registry*
